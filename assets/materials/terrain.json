@@ -1,0 +1,43 @@
+{
+	"name": "basic_terrain",
+	"layer": "deferred",
+	"shadowShader": "terrain_shadow",
+	"vertexShader": "terrain_vs",
+	"pixelShader": "terrain_ps",
+	"sharedParameters": [
+		{
+			"name": "grassTexture",
+			"type": "texture2D"
+		},
+		{
+			"name": "rockTexture",
+			"type": "texture2D"
+		}
+	],
+	"instanceParameters": [
+		{
+			"name": "worldTransform",
+			"type": "matrix4"
+		},
+		{
+			"name": "worldViewProjection",
+			"type": "matrix4"
+		},
+		{
+			"name": "surfaceColor",
+			"type": "vector4"
+		},
+		{
+			"name": "texScale1",
+			"type": "vector4"
+		}
+	],
+	"textures": [
+		{
+			"name": "grass256"
+		},
+		{
+			"name": "rough256"
+		}
+	]
+}

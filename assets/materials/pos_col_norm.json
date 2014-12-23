@@ -1,0 +1,25 @@
+{
+	"metaData": {
+		"contentType": "material",
+		"contentVersion": 1
+	},
+	"name": "pos_col_norm",
+	"layer": "deferred",
+	"shadowShader": "pos_col_norm_shadow",
+	"vertexShader": "pos_col_norm",
+	"pixelShader": "deferred_out",
+	"instanceParameters": [
+		{
+			"name": "worldTransform",
+			"type": "matrix4"
+		},
+		{
+			"name": "worldViewProjection",
+			"type": "matrix4"
+		},
+		{
+			"name": "surfaceColor",
+			"type": "vector4"
+		}
+	]
+}

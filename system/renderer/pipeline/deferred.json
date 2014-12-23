@@ -1,0 +1,200 @@
+{
+	"metaData": {
+		"contentType": "pipeline",
+		"contentVersion": 1,
+		"description": [	"This file contains the rendering pipeline definition for nGen when using deferred shading.",
+							"This file should be run through the pipeline generator command line, which will result in a binary version usable by the engine itself.",
+							"We store the data in this Json file to keep the pipeline definition flexible and human readable, it also allows us to easily modify",
+							"the pipeline without polluting the actual code-base."
+						]
+	},
+	"name": "deferred",
+	"layers": [
+		{
+			"name": "deferred",
+			"frameBuffer": "deferred_target",
+			"description": "All rendering in this layer makes use of the deferred shading pipeline, outputting normals, depth and albedo to the correct targets.",
+			"clear": {
+				"color": true,
+				"depth": true,
+				"stencilValue": 0,
+				"depthValue": 1.0,
+				"colorValue": [ 0.0, 0.0, 0.0, 0.0 ]
+			}
+		},
+		{
+			"name": "deferred_lighting",
+			"description": "Once the deferred rendering has completed, this layer performs the lighting calculations using the deferred data",
+			"generators": [
+				{
+					"name": "deferred_lighting",
+					"frameBuffer": "lighting_target",
+					"resources": [ "normal_buffer" ],
+					"material": "material_filename"
+				}
+			],
+			"clear": {
+				"clearColor": true,
+				"clearDepth": true,
+				"stencilValue": 0,
+				"depthValue": 1.0,
+				"colorValue": [ 0.0, 0.0, 0.0, 0.0 ]
+			}
+		},
+		{
+			"name": "deferred_combine",
+			"description": "This layer is used to combine the deferred lighting table with the albedo values, resulting in our lit scene.",
+			"generators": [
+				{
+					"name": "deferred_combine",
+					"frameBuffer": "combine_target",
+					"resources": [ "diffuse_buffer", "accumulation" ],
+					"material": "deferred_combine_material_filename"
+				}
+			]
+		},
+		{
+			"name": "standard",
+			"description": "Any opaque rendering that cannot take advantage of the deferred shading pipeline goes in this layer.",
+			"frameBuffer": "post_deferred"
+		},
+		{
+			"name": "post_standard",
+			"description": "An extra layer to account for opaque items that cannot use the normal standard layer.",
+			"frameBuffer": "post_deferred"
+		},
+		{
+			"name": "transparent",
+			"description": "Transparent objects must be rendered after the opaque geometry, they go in this layer.",
+			"frameBuffer": "post_deferred"
+		},
+		{
+			"name": "transparent2",
+			"description": "Additional transparent objects that need to be rendered after the others can go here.",
+			"frameBuffer": "post_deferred"
+		},
+		{
+			"name": "hdr_final_combine",
+			"description": "This layer is used to perform the HDR lighting on the rendered scene.",
+			"generators": [
+				{
+					"name": "hdr_hable",
+					"frameBuffer": "hdr_target",
+				}
+			]
+		},
+		{
+			"name": "final_output",
+			"description": "This layer is used to perform any final processing necessary before the scene is presented to the user.",
+			"inverted": true,
+			"generators": [
+				{
+					"name": "final_output",
+					"resources": [ "diffuse_buffer" ]
+				}
+			]
+		}
+	],
+	"frameBuffers": [
+		{
+			"name": "deferred_target",
+			"targets": [ "diffuse_buffer", "normal_buffer" ],
+			"depth": "depth_stencil",
+			"readOnlyDepth": false
+		},
+		{
+			"name": "lighting_target",
+			"targets": [ "accumulation" ],
+			"depth": "depth_stencil",
+			"readOnlyDepth": true
+		},
+		{
+			"name": "combine_target",
+			"targets": [ "combine" ],
+		},
+		{
+			"name": "post_deferred",
+			"targets": [ "combine" ],
+			"depthTarget": "depth_stencil",
+			"readOnlyDepth": false
+		},
+		{
+			"name": "transparent_target",
+			"targets": [ "combine" ],
+			"depthTarget": "depth_stencil",
+			"readOnlyDepth": true
+		},
+		{
+			"name": "hdr_target",
+			"targets": [ "diffuse_buffer" ],
+		}
+	],
+	"resources": [
+		{
+			"name": "depth_stencil",
+			"inherit": "back_buffer",
+			"format": "D24S8"
+		},
+		{
+			"name": "diffuse_buffer",
+			"inherit": "back_buffer",
+			"format": "sRGB_R8G8B8A8"
+		},
+		{
+			"name": "normal_buffer",
+			"inherit": "back_buffer",
+			"format": "R16G16B16A16"
+		},
+		{
+			"name": "material_buffer",
+			"inherit": "back_buffer",
+			"format": "R16G16B16A16"
+		},
+		{
+			"name": "accumulation",
+			"inherit": "back_buffer",
+			"format": "R16G16B16A16"
+		},
+		{
+			"name": "combine",
+			"inherit": "back_buffer",
+			"format": "R16G16B16A16"
+		},
+		{
+			"name": "refraction",
+			"inherit": "back_buffer",
+			"format": "R16G16B16A16"
+		},
+		{
+			"name": "bright_pass",
+			"inherit": "back_buffer",
+			"format": "R11G11B10F"
+		},
+		{
+			"name": "bloom11",
+			"inherit": "bright_pass",
+			"wScale": 0.5,
+			"hScale": 0.5,
+			"format": "R11G11B10F"
+		},
+		{
+			"name": "bloom21",
+			"inherit": "bloom11",
+			"wScale": 0.5,
+			"hScale": 0.5,
+			"format": "R11G11B10F"
+		},
+		{
+			"name": "bloom31",
+			"inherit": "bloom21",
+			"wScale": 0.5,
+			"hScale": 0.5,
+			"format": "R11G11B10F"
+		},
+		{
+			"name": "bloom32",
+			"inherit": "bloom31",
+			"format": "R11G11B10F"
+		},
+	]
+}
