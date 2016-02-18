@@ -18,8 +18,6 @@
 # A string table is a memory block that contains a collection of ASCII strings.
 # This table is used by various objects in the ngen data files.
 
-import struct
-import ctypes
 
 class ngenStringTable:
     def __init__( self ):
