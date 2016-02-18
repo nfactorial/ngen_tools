@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52074032-d60d-47f7-b283-c8bd1b096fd2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/python/ngen_pipeline.py" afterPath="$PROJECT_DIR$/scripts/python/ngen_pipeline.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/python/string_table.py" afterPath="$PROJECT_DIR$/scripts/python/string_table.py" />
     </list>
     <ignored path="ngen_tools.iws" />
@@ -23,21 +24,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ngen_pipeline.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/python/ngen_pipeline.py">
+      <file leaf-file-name="binarywriter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/python/binarywriter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/renderer/pipeline/readme.txt">
+      <file leaf-file-name="string_table.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/python/string_table.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7508306">
+              <caret line="53" column="59" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ngen_pipeline.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/python/ngen_pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+              <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -53,26 +64,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="binarywriter.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/python/binarywriter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.910299">
-              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="string_table.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/python/string_table.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="56" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -83,8 +74,8 @@
       <list>
         <option value="$PROJECT_DIR$/scripts/python/binarywriter.py" />
         <option value="$PROJECT_DIR$/scripts/python/material_exporter.py" />
-        <option value="$PROJECT_DIR$/scripts/python/ngen_pipeline.py" />
         <option value="$PROJECT_DIR$/scripts/python/string_table.py" />
+        <option value="$PROJECT_DIR$/scripts/python/ngen_pipeline.py" />
       </list>
     </option>
   </component>
@@ -172,10 +163,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="python" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -275,16 +262,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/system/renderer/pipeline/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.4152824">
           <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/string_table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="56" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -292,7 +271,15 @@
     <entry file="file://$PROJECT_DIR$/scripts/python/ngen_pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/binarywriter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -305,10 +292,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/binarywriter.py">
+    <entry file="file://$PROJECT_DIR$/scripts/python/string_table.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.910299">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.7508306">
+          <caret line="53" column="59" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
           <folding />
         </state>
       </provider>

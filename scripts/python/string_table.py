@@ -32,20 +32,22 @@ class ngenStringTable:
         """
         return len(self.rawStrings)
 
-    # We use string offset rather than item index, this allows
-    # objects to refer to items without needing an index to
-    # offset table.
-
-    def addString(self, newString):
-        if newString is None:
+    def addString(self, item):
+        """
+        Inserts a new string into the table. We use string offset rather than item index, as this allows
+        objects to refer to the item without needing an index into an offset table.
+        :param item: The string to be inserted into the table.
+        :return: Offset of the string within the table.
+        """
+        if item is None:
             return 0xFFFFFFFF
-        itemOffset = self.stringDictionary.get(newString)
-        if itemOffset is None:
-            itemOffset = self.stringOffset
-            self.rawStrings.append(newString)
-            self.stringDictionary[newString] = itemOffset
-            self.stringOffset += len(newString) + 1   # +1 because of null terminator
-        return itemOffset
+        offset = self.stringDictionary.get(item)
+        if offset is None:
+            offset = self.stringOffset
+            self.rawStrings.append(item)
+            self.stringDictionary[item] = offset
+            self.stringOffset += len(item) + 1   # +1 because of null terminator
+        return offset
 
     def export(self, binaryWriter):
         """

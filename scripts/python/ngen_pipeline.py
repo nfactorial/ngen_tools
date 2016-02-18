@@ -48,13 +48,13 @@ class ngenDisplayResource:
         else:
             print("Unknown texture format " + jsonData["format"] + " specified in display resource.")
 
-        if jsonData.get("width"):
+        if jsonData.get("width") is not None:
             self.width = jsonData["width"]
-        if jsonData.get("height"):
+        if jsonData.get("height") is not None:
             self.height = jsonData["height"]
-        if jsonData.get("wScale"):
+        if jsonData.get("wScale") is not None:
             self.wScale = jsonData["wScale"]
-        if jsonData.get("hScale"):
+        if jsonData.get("hScale") is not None:
             self.hScale = jsonData["hScale"]
 
     def export(self, binaryWriter):
@@ -77,22 +77,22 @@ class ngenClearInfo:
         self.color = [0.0, 0.0, 0.0, 0.0]
 
     def loadJson(self, jsonData):
-        if jsonData.get("clearColor"):
+        if jsonData.get("clearColor") is not None:
             self.clearColor = jsonData["clearColor"]
-        if jsonData.get("clearDepth"):
+        if jsonData.get("clearDepth") is not None:
             self.clearDepth = jsonData["clearDepth"]
-        if jsonData.get("stencilValue"):
+        if jsonData.get("stencilValue") is not None:
             self.stencilValue = jsonData["stencilValue"]
-        if jsonData.get("depthValue"):
+        if jsonData.get("depthValue") is not None:
             self.depthValue = jsonData["depthValue"]
-        if jsonData.get("colorValue"):
+        if jsonData.get("colorValue") is not None:
             self.depthColor = jsonData["colorValue"]
 
     def export(self, writer):
         writer.writeBool32(self.clearColor)
         writer.writeBool32(self.clearDepth)
         writer.writeUInt32(self.stencilValue)
-        writer.writeFloat32(self.colorValue)
+        writer.writeFloat32(self.depthValue)
         writer.writeFloat32(self.color[0])
         writer.writeFloat32(self.color[1])
         writer.writeFloat32(self.color[2])
@@ -109,12 +109,12 @@ class ngenFrameBuffer:
 
     def loadJson(self, stringTable, jsonData):
         self.name = stringTable.addString(jsonData["name"])
-        if jsonData.get("targets"):
+        if jsonData.get("targets") is not None:
             for target in jsonData["targets"]:
                 self.targets.append(stringTable.addString(target))
-        if jsonData.get("depthTarget"):
+        if jsonData.get("depthTarget") is not None:
             self.depthTarget = stringTable.addString(jsonData["depthTarget"])
-        if jsonData.get("readOnlyDepth"):
+        if jsonData.get("readOnlyDepth") is not None:
             self.readOnlyDepth = jsonData["readOnlyDepth"]
 
     def export(self, binaryWriter):
@@ -135,11 +135,11 @@ class ngenGenerator:
 
     def loadJson(self, stringTable, jsonData):
         self.name = stringTable.addString(jsonData["name"])
-        if jsonData.get("frameBuffer"):
+        if jsonData.get("frameBuffer") is not None:
             self.frameBuffer = stringTable.addString(jsonData["frameBuffer"])
-        if jsonData.get("material"):
+        if jsonData.get("material") is not None:
             self.material = stringTable.addString(jsonData["material"])
-        if jsonData.get("resources"):
+        if jsonData.get("resources") is not None:
             for resource in jsonData.get("resources"):
                 self.resources.append(stringTable.addString(resource))
 
@@ -205,11 +205,11 @@ class ngenPipeline:
 
     def loadJson(self, jsonData):
         self.name = jsonData["name"]
-        if jsonData.get("resources"):
+        if jsonData.get("resources") is not None:
             self.loadResources(jsonData["resources"])
-        if jsonData.get("frameBuffers"):
+        if jsonData.get("frameBuffers") is not None:
             self.loadFrameBuffers(jsonData["frameBuffers"])
-        if jsonData.get("layers"):
+        if jsonData.get("layers") is not None:
             self.loadLayers(jsonData["layers"])
 
     def loadResources(self, jsonData):
@@ -256,7 +256,7 @@ class ngenPipeline:
         if len(self.frameBuffers) > 0:
             binaryWriter.beginChunk('F', 'M', 'B', 'F')
             for frameBuffer in self.frameBuffers:
-                binaryWriter.export(binaryWriter)
+                frameBuffer.export(binaryWriter)
             binaryWriter.endChunk()
 
     def exportLayers(self, binaryWriter):
